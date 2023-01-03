@@ -4,6 +4,8 @@ import RecordIndexView from '../views/record/RecordIndexView'
 import RanklistIndexView from '../views/ranklist/RanklistIndexView'
 import UserBotIndexView from '../views/user/bot/UserBotIndexView'
 import NotFound from '../views/error/NotFound'
+import UserAccountLogin from '../views/user/account/UserAccountLogin'
+import UserAccountRegister from '../views/user/account/UserAccountRegister'
 
 const routes = [
   {
@@ -15,6 +17,16 @@ const routes = [
     path:"/pk/",
     name:"pk_index",
     component:PKIndexView,
+  },
+  {
+    path:"/user/account/login/",
+    name:"user_account_login",
+    component:UserAccountLogin,
+  },
+  {
+    path:"/user/account/register/",
+    name:"user_account_register",
+    component:UserAccountRegister,
   },
   {
     path:"/record/",
