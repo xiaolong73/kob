@@ -7,6 +7,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
+// 用来实现用户密码的加密存储
 @Configuration
 public class CorsConfig implements Filter {
     @Override
