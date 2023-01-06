@@ -6,47 +6,72 @@ import UserBotIndexView from '../views/user/bot/UserBotIndexView'
 import NotFound from '../views/error/NotFound'
 import UserAccountLogin from '../views/user/account/UserAccountLogin'
 import UserAccountRegister from '../views/user/account/UserAccountRegister'
+import store from '@/store'
 
 const routes = [
   {
     path:'/',
     name:'home',
-    redirect:'/pk/',
+    redirect: '/pk/',
+    meta: {
+      requestAuth: true,
+    }
   },
   {
     path:"/pk/",
     name:"pk_index",
-    component:PKIndexView,
+    component: PKIndexView,
+    meta: {
+      requestAuth: true,
+    }
   },
   {
     path:"/user/account/login/",
     name:"user_account_login",
-    component:UserAccountLogin,
+    component: UserAccountLogin,
+    meta: {
+      requestAuth: false,
+    }
   },
   {
     path:"/user/account/register/",
     name:"user_account_register",
-    component:UserAccountRegister,
+    component: UserAccountRegister,
+    meta: {
+      requestAuth: false,
+    }
   },
   {
     path:"/record/",
     name:"record_index",
-    component:RecordIndexView,
+    component: RecordIndexView,
+    meta: {
+      requestAuth: true,
+    }
   },  
   {
     path:"/ranklist/",
     name:"ranklist_index",
-    component:RanklistIndexView,
+    component: RanklistIndexView,
+    meta: {
+      requestAuth: true,
+    }
   },
   {
     path:"/user/bot/",
     name:"user_bot_index",
-    component:UserBotIndexView,
+    component: UserBotIndexView,
+    meta: {
+      requestAuth: true,
+    }
   },
   {
     path:"/404/",
     name:"404",
-    component:NotFound,
+    component: NotFound,
+    meta: {
+      requestAuth: false,
+    }
   },
   {
     path:'/:catchAll(.*)',
@@ -58,5 +83,14 @@ const router = createRouter({
   history: createWebHistory(),
   routes
 })
+
+router.beforeEach((to, from, next) => {
+  if (to.meta.requestAuth && !store.state.user.is_login) {
+    next({name: "user_account_login"});
+  } else {
+    next();
+  }
+})
+
 
 export default router
