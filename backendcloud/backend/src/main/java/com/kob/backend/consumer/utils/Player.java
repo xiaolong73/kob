@@ -33,7 +33,7 @@ public class Player {
             x += dx[d];
             y += dy[d];
             res.add(new Cell(x, y));
-            if( check_tail_increasing(++ step)){
+            if( !check_tail_increasing(++ step)){   // 不增加长度时要移除尾巴
                 res.remove(0);
             }
         }
