@@ -12,6 +12,8 @@ import java.util.List;
 @NoArgsConstructor
 public class Player {
     private Integer id;
+    private Integer botId;  // -1表示亲自出马
+    private String botCode;
     private Integer sx;
     private Integer sy;
     private List<Integer> steps;
@@ -40,7 +42,7 @@ public class Player {
         return res;
     }
 
-    public String getString(){
+    public String getStepsString(){
         StringBuilder res = new StringBuilder();
         for(int step:steps){
             res.append(step);
